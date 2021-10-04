@@ -137,29 +137,29 @@ All names / keys can be renamed.
 
 3.1 Command List                                *BBUF-Command-list* *BBUF-Cmdlist*
 
-|BBset| A [B [...]]  Set current list to buffers A [B ...]
-|BBadd| A [B [...]]  Add buffer A, [B ...] to current list. If list is empty
+BBset A [B [...]]  Set current list to buffers A [B ...]
+BBadd A [B [...]]  Add buffer A, [B ...] to current list. If list is empty
                    include current + alternate buffer. Use BBSet to set exact.
 
-|BBdel| A [B [...]]  Remove buffer A, [B ...] from current list
+BBdel A [B [...]]  Remove buffer A, [B ...] from current list
 
-|BBback|             Go to previous buffer
-|BBforward|          Go to next buffer
+BBback             Go to previous buffer
+BBforward          Go to next buffer
 
-|BBls|               List buffers in current list
-|BBnamedls|          List all lists including names
-|BBlsnamed|          Alias for BBnamedls
+BBls               List buffers in current list
+BBnamedls          List all lists including names
+BBlsnamed          Alias for BBnamedls
 
-|BBclr|              Clear current list
-|BBclrall|           Clear all lists
+BBclr              Clear current list
+BBclrall           Clear all lists
 
-|BBhelp|             Echo a quick command help
+BBhelp             Echo a quick command help
 
-|BBnamedadd|  A      Add a list named A
-|BBnameddelete| A    Delete list A
+BBnamedadd  A      Add a list named A
+BBnameddelete A    Delete list A
 
-|BBnamedrename|      and:
-|BBrename|    A [B]  Rename list from A to B. If only A rename current to A.
+BBnamedrename      and:
+BBrename    A [B]  Rename list from A to B. If only A rename current to A.
 
 
 3.2 Argumens~
