@@ -147,8 +147,10 @@ BBback             Go to previous buffer
 BBforward          Go to next buffer
 
 BBls               List buffers in current list
-BBnamedls          List all lists including names
+BBnamedls          List all lists including names. Current list is marked with
+                   asterisk.
 BBlsnamed          Alias for BBnamedls
+BBnamedgo A        Go to list A. Create if it does not exist.
 
 BBclr              Clear current list
 BBclrall           Clear all lists

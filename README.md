@@ -33,6 +33,10 @@ Then use keyboard mappings to navigate it. I.e.
 
 Go to previous buffer in list: <kbd>Ctrl+Shift+Left</kbd>
 
+List buffers :BBls
+
+etc.
+
 ---
 
 It keeps, updates and use a dictionary of buffer lists.

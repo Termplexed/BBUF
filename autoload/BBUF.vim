@@ -256,6 +256,7 @@ let s:Commands =
 	\ "lsnamed":     "command! -nargs=* CMD call s:bufs_named_list(<f-args>)",
 	\ "forward":     "command! -nargs=0 CMD call s:bufs_next('N')",
 	\ "namedadd":    "command! -nargs=1 CMD call s:bufs_named_add(<f-args>)",
+	\ "namedgo":     "command! -nargs=1 CMD call s:bufs_named_add(<f-args>)",
 	\ "namedls":     "command! -nargs=* CMD call s:bufs_named_list(<f-args>)",
 	\ "rename":      "command! -nargs=+ CMD call s:bufs_named_rename(<f-args>)",
 	\ "namedrename": "command! -nargs=+ CMD call s:bufs_named_rename(<f-args>)",
