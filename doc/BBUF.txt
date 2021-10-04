@@ -1,0 +1,185 @@
+*BBUF.txt*                                  Last change: 20211003 or there about
+==============================================================================
+                    @@@@@@@   @@@@@@@   @@@  @@@  @@@@@@@@
+                    @@@@@@@@  @@@@@@@@  @@@  @@@  @@@@@@@@
+                    @@!  @@@  @@!  @@@  @@!  @@@  @@!
+                    !@   @!@  !@   @!@  !@!  @!@  !@!
+                    @!@!@!@   @!@!@!@   @!@  !@!  @!!!:!
+                    !!!@!!!!  !!!@!!!!  !@!  !!!  !!!!!:
+                    !!:  !!!  !!:  !!!  !!:  !!!  !!:
+                    :!:  !:!  :!:  !:!  :!:  !:!  :!:
+                    :: ::::   :: ::::  ::::: ::   ::
+                    :: : ::   :: : ::    : :  :    :
+
+                                  ¨   V  ¨
+                        ¨ A Termplexed Production ¨
+                                 ¨  20-21  ¨
+                                     m:n
+
+
+                         github.com/Termplexed/BBUF
+
+==============================================================================
+NB! NB! NB! NB! NB! NB! NB! NB! NB! NB NB! NB! NB! NB! NB! NB! NB! NB! NB! NB!~
+
+This plugin maps without asking. Modify script to change. See |BBUF-map|.
+
+  <Ctrl-Shift-Up>
+  <Ctrl-Shift-Right>
+  <Ctrl-Shift-Down>
+  <Ctrl-Shift-Left>
+
+If `g:BBUFLOAD` is not set to something evaluating to true only the command
+`:BBload` is added. I.e. no maps etc. until `BBload` is executed.
+
+NB! NB! NB! NB! NB! NB! NB! NB! NB! NB NB! NB! NB! NB! NB! NB! NB! NB! NB! NB!~
+==============================================================================
+TOC                                                                  *BBUF-TOC*
+
+        A.  Preface ................... |BBUF-Preface|
+
+        1.  Configuration ............. |BBUF-Configuration|
+        2.  Key Mappings .............. |BBUF-map|
+        3.  Commands .................. |BBUF-Commands|
+          3.1 Command List ............ |BBUF-Command-list|
+          3.2 Command Arguments
+
+        B.  History ................... |BBUF-History|
+
+==============================================================================
+
+A. Preface                                                       *BBUF-Preface*
+
+So what is this you ask. It is a way to keep |Lists| of buffers you are currently
+working on, or more correctly it is a |Dictionary| of lists: >
+
+ {
+     default: [1, 3 ,6],
+     some_other: [1, 8 , 12],
+     yet_another: [17, 4, 19]
+ }
+>
+Say you have 20 buffers in a VIM session. Now you want to work on buffer
+1, 3 and 16. Do: >
+
+    :BBset 1 3 16
+>
+And then use Ctrl-Shift-Left and Ctrl-Shift-Right to cycle trough them. That's
+the gist of it.
+
+- Use `:BBls` to list current buffers.
+- Use `:BBnamedls` to list entire dictionary.
+- Use `:BBhelp` to echo quick help.
+- Use `:BBnamedadd` to create a new entry in the dictionary.
+
+See |BBUF-Commands| for a full list.
+
+------------------------------------------------------------------------------
+It is easy and fast to work with 2 files, or when having few buffers open.
+This plugin is written with the authors common use of Ctrl-Left to `:b#` and
+Ctrl-Up to `:bn` and Ctrl-Down to `:bp`. Other times |tabs| is of use, but
+found something missing. Hence BBUF.
+
+
+==============================================================================
+1. Configuration                                           *BBUF-Configuration*
+
+These variables are read when loading the script. Typically set them in
+`.vimrc` or the like:
+
+  VARIABLE                DEFAULT    USE
+  g:BBUF_verbosity              0    Echo list on add, del etc.
+  g:BBUF_go_alternate_on_empty  0    Go to :b# if list is empty and
+  g:BBUF_pfx_cmd              "BB"   Prefix for commands
+  g:BBLOAD                      0    If 0 only BBload command is added.
+
+
+==============================================================================
+2. Key mappings                                    *BBUF-Key-mappings* *BBUF-map*
+
+Key-bindings are hard-coded (at least for now). Modify the script if you want
+to change: `autoload/BBUF.vim` (at end of file).
+
+  <Ctrl-Shift-Right>    Go to next buffer in list
+  <Ctrl-Shift-Left>     Go to previous buffer in list
+
+  <Ctrl-Shift-Up>       Add current buffer to current list
+  <Ctrl-Shift-Down>     Remove current buffer from list
+
+==============================================================================
+3. Commands                                                     *BBUF-Commands*
+
+There is a lot of commands. Most perhaps not used that much, but good for
+exploring and various use-cases.
+
+Commands start with BB. This way one can easily do :BB<tab> to list available
+options. The `BB` can be modified and set to something else. See
+|BBUF-Configuration|
+
+------------------------------------------------------------------------------
+
+We are working with a |Dictionary|. Default key is `default`. The commands are
+mostly used to manipulate this dictionary, and of course navigation. >
+
+ Initial dictionary:
+ {
+     default: []
+ }
+
+ After some work e.g.:
+ {
+     default: [1, 3 ,6],
+     foo:     [1, 8 , 12],
+     bar:     [17, 4, 19]
+ }
+
+All names / keys can be renamed.
+
+3.1 Command List                                *BBUF-Command-list* *BBUF-Cmdlist*
+
+|BBset| A [B [...]]  Set current list to buffers A [B ...]
+|BBadd| A [B [...]]  Add buffer A, [B ...] to current list. If list is empty
+                   include current + alternate buffer. Use BBSet to set exact.
+
+|BBdel| A [B [...]]  Remove buffer A, [B ...] from current list
+
+|BBback|             Go to previous buffer
+|BBforward|          Go to next buffer
+
+|BBls|               List buffers in current list
+|BBnamedls|          List all lists including names
+|BBlsnamed|          Alias for BBnamedls
+
+|BBclr|              Clear current list
+|BBclrall|           Clear all lists
+
+|BBhelp|             Echo a quick command help
+
+|BBnamedadd|  A      Add a list named A
+|BBnameddelete| A    Delete list A
+
+|BBnamedrename|      and:
+|BBrename|    A [B]  Rename list from A to B. If only A rename current to A.
+
+
+3.2 Argumens~
+
+When argument is buffer one can either use buffer-number or file-name.
+
+Numbers are always interpreted as buffer-numbers; hence if one have a file
+named 123 one have to add / remove it by using the buffer-number, optionally
+use `:BBadd` `this` when in the buffer, or the key-mapping (<C-S-Up> / <C-S-Down>)
+
+==============================================================================
+APPENDIX
+==============================================================================
+
+B. History
+
+A script that has been laying in the drawer. Expanded on it and pushed it into
+the wild. A LOT is not tested well etc. Saying it is a work in progress is
+a bit overstating it. It is a work. Most mashed up in a few minutes here and
+there.
+
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
