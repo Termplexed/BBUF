@@ -1,4 +1,4 @@
-<h1 align="center">:BB</h1>
+<h1 align="center">~ BBUF ~</h1>
 <div align="center">
 <pre>
      @@@@@@@   @@@@@@@   @@@  @@@  @@@@@@@@
@@ -16,7 +16,7 @@
 </pre>
 </div>
 
-# BBUF
+---
 
 A Vim plugin to render help when working with collection of buffers.
 
@@ -47,3 +47,5 @@ It keeps, updates and use a dictionary of buffer lists.
 ```
 
 See `doc/BBUF.txt` for full help.
+
+https://github.com/Termplexed/BBUF/blob/master/doc/BBUF.txt
